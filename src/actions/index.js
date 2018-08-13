@@ -1,4 +1,3 @@
-import axios from "axios";
 import authService from "../services/auth-service";
 import axiosService from "../services/axios-service";
 
@@ -46,7 +45,7 @@ export const fetchRentalById = (rentalId) => {
     return function(dispatch){
         dispatch(fetchRentalByIdInit());
 
-        axios.get(`/api/v1/rentals/${rentalId}`)
+        axiosInstance.get(`/rentals/${rentalId}`)
             .then(res => res.data)
             .then(rental => dispatch(fetchRentalByIdSuccess(rental)));
     }
@@ -70,7 +69,7 @@ const loginFailure = (errors) => {
 };
 
 export const register = (userData) => {
-    return axios.post("/api/v1/users/register", userData).then(
+    return axiosInstance.post("/users/register", userData).then(
         (res) => {
             return res.data;
         },
@@ -90,7 +89,7 @@ export const checkAuthState = () => {
 
 export const login = (userData) => {
     return dispatch => {
-        return axios.post("/api/v1/users/auth", userData).then(
+        return axiosInstance.post("/users/auth", userData).then(
             (res) => {
                 return res.data
             }
@@ -112,4 +111,14 @@ export const logout = () => {
     return {
         type: LOGOUT
     }
+};
+
+export const createBooking = (booking) => {
+    return axiosInstance.post("/bookings", booking)
+        .then( (res) => {
+            return res.data;
+        })
+        .catch(({response}) =>{
+            return Promise.reject(response.data.errors);
+        })
 };
