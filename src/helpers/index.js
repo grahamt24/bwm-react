@@ -1,4 +1,5 @@
 import titleize from "titleize";
+import * as moment from "moment";
 
 export const rentalType = (isShared) => {
     if(isShared){
@@ -16,4 +17,16 @@ export const toUpperCase = (value) => {
     else{
         return ""
     }
+};
+
+export const getRangeOfDates = (startAt, endAt, dateFormat = "MM/DD/Y") => {
+    const tempDates = [];
+    const mEndAt = moment(endAt);
+    let mStartAt = moment(startAt);
+    while(mStartAt < mEndAt){
+        tempDates.push(mStartAt.format(dateFormat));
+        mStartAt = mStartAt.add(1, "day");
+    }
+    tempDates.push(mEndAt.format(dateFormat));
+    return tempDates;
 };
