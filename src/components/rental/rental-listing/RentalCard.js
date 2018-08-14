@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import {rentalType} from "../../../helpers";
 
 export function RentalCard(props){
-    const rental = props.rental
+    const rental = props.rental;
     return (
         <div className="col-md-3 col-xs-6">
             <Link className="rental-detail-link" to={`/rentals/${rental._id}`}>
