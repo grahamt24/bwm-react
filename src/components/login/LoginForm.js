@@ -1,5 +1,5 @@
-import React from 'react';
-import { Field, reduxForm } from 'redux-form';
+import React from "react";
+import { Field, reduxForm } from "redux-form";
 
 import {BwmInput} from "../shared/form/BwmInput";
 import {BwmResError} from "../shared/form/BwmResError";
@@ -35,5 +35,5 @@ const LoginForm = props => {
 };
 
 export default reduxForm({
-    form: 'loginForm'
+    form: "loginForm"
 })(LoginForm)

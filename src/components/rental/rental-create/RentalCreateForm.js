@@ -1,5 +1,5 @@
-import React from 'react';
-import {Field,reduxForm} from 'redux-form';
+import React from "react";
+import {Field,reduxForm} from "redux-form";
 
 import {BwmInput} from "../../shared/form/BwmInput";
 import {BwmResError} from "../../shared/form/BwmResError";
@@ -84,7 +84,7 @@ const RentalCreateForm = props => {
 };
 
 export default reduxForm({
-    form: 'rentalCreateForm',
+    form: "rentalCreateForm",
     initialValues: {
         shared: false,
         category: "Apartment"

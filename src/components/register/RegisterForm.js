@@ -1,5 +1,5 @@
-import React from 'react';
-import { Field, reduxForm } from 'redux-form';
+import React from "react";
+import { Field, reduxForm } from "redux-form";
 
 import {BwmInput} from "../shared/form/BwmInput";
 import {BwmResError} from "../shared/form/BwmResError";
@@ -68,6 +68,6 @@ const validate = values => {
 };
 
 export default reduxForm({
-    form: 'registerForm',
+    form: "registerForm",
     validate
 })(RegisterForm)
