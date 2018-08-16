@@ -1,14 +1,19 @@
 import authService from "../services/auth-service";
 import axiosService from "../services/axios-service";
 
-import {FETCH_RENTAL_BY_ID_SUCCESS,
-        FETCH_RENTAL_BY_ID_INIT,
-        FETCH_RENTALS_SUCCESS,
-        FETCH_RENTALS_FAIL,
-        FETCH_RENTALS_INIT,
-        LOGIN_SUCCESS,
-        LOGIN_FAILURE,
-        LOGOUT} from "./types";
+import {
+    FETCH_RENTAL_BY_ID_SUCCESS,
+    FETCH_RENTAL_BY_ID_INIT,
+    FETCH_RENTALS_SUCCESS,
+    FETCH_RENTALS_FAIL,
+    FETCH_RENTALS_INIT,
+    LOGIN_SUCCESS,
+    LOGIN_FAILURE,
+    LOGOUT,
+    FETCH_USER_BOOKINGS_INIT,
+    FETCH_USER_BOOKINGS_SUCCESS,
+    FETCH_USER_BOOKINGS_FAIL
+} from "./types";
 
 // RENTALS ACTIONS -------------------------------
 
@@ -79,6 +84,74 @@ export const fetchRentalById = (rentalId) => {
 };
 
 
+
+// USER BOOKING ACTIONS -------------------------------
+
+const fetchUserBookingsInit = () => {
+    return {
+        type: FETCH_USER_BOOKINGS_INIT
+    }
+};
+
+const fetchUserBookingsSuccess = (bookings) => {
+    return {
+        type: FETCH_USER_BOOKINGS_SUCCESS,
+        bookings
+    }
+};
+
+const fetchUserBookingsFail = (errors) => {
+    return {
+        type: FETCH_USER_BOOKINGS_FAIL,
+        errors
+    }
+};
+
+
+export const fetchUserBookings = () => {
+    return dispatch => {
+        dispatch(fetchUserBookingsInit());
+
+        return axiosInstance.get("/bookings/manage").then(
+        (res) => {
+            return res.data;
+        })
+        .then(
+            (bookings) => {
+                dispatch(fetchUserBookingsSuccess(bookings));
+            })
+        .catch(
+            (error) => {
+                dispatch(fetchUserBookingsFail(error.response.data.error))
+            });
+    }
+};
+
+// USER RENTAL ACTIONS -------------------------------
+
+export const getUserRentals = () => {
+    return axiosInstance.get("/rentals/manage").then(
+    (res) => {
+        return res.data;
+    })
+    .catch(
+        (error) => {
+            return Promise.reject(error.response.data.errors)
+    });
+};
+
+
+export const deleteUserRental = (rentalId) => {
+    return axiosInstance.delete(`/rentals/${rentalId}`).then(
+        (res) => {
+            return res.data;
+        })
+        .catch(
+            (error) => {
+                return Promise.reject(error.response.data.errors);
+            }
+        );
+};
 
 // AUTH ACTIONS -------------------------------
 
@@ -163,3 +236,4 @@ export const createRental = (rentalData) => {
         }
     );
 };
+

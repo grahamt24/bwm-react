@@ -2,9 +2,11 @@
 @import "header/header";
 @import "form/form";
 
-@import 'booking/booking';
+@import "booking/booking";
+
 @import "rental/rental-listing";
 @import "rental/rental-detail";
+@import "rental/rental-manage";
 
 .clickable{
   &:hover{

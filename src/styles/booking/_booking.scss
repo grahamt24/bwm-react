@@ -1,7 +1,12 @@
+@import "booking-manage";
 
 .booking {
   padding: 20px;
   border: 1px solid #dedada;
+
+  a:hover{
+    color: white;
+  }
 
   .btn-confirm {
     font-size: 17px;
