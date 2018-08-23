@@ -8,6 +8,8 @@
 @import "rental/rental-detail";
 @import "rental/rental-manage";
 
+@import "editable/editable-component";
+
 .clickable{
   &:hover{
     cursor: pointer;

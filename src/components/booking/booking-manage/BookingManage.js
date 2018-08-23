@@ -19,7 +19,6 @@ class BookingManage extends React.Component {
     }
 
     render(){
-        console.log(this.props);
         const {isFetching, bookings} = this.props;
         return (
             <section id="userBookings">
