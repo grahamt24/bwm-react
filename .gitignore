@@ -25,3 +25,5 @@ yarn-error.log*
 
 #Ignore dev file
 /server/config/dev.js
+
+yarn.lock
